@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A/B example</title>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script src="assets/exports.js"></script>
+
+    <script src="es5/pTime.js"></script>
+    <script src="es5/cycles.js"></script>
+
+    <script src="examples/loop.js"></script>
+    <script src="examples/loop_2.js"></script>
+
+    <link rel="stylesheet" href="assets/css/ab.css" type="text/css" media="screen" />
+
+  </head>
+  <body>
+
+  <div id="testA" class="test-block">
+    <span class="name">for() </span>
+    <span class='time'></span>
+  </div>
+
+  <div id="testB" class="test-block">
+    <span class="name">while() </span>
+    <span class='time'></span>
+  </div>
+
+  <p></p>
+
+<script>
+
+  var cyclesAmount = 10;
+
+  var loopTest = new cycles({
+    cycles: cyclesAmount,
+    function: loop
+  });
+
+  var loopTest2 = new cycles({
+    cycles: cyclesAmount,
+    function: loop_2
+  });
+
+  loopTest.init();
+  loopTest2.init();
+
+  setTimeout(function() {
+
+    $("#testA").css( "width" , ( loopTest.result * 100 ) + "px" );
+    $("#testA .time").text( loopTest.result + " ms" );
+
+    $("#testB").css( "width" , ( loopTest2.result * 100 ) + "px" );
+    $("#testB .time").text( loopTest2.result + " ms" );
+
+  }, 0);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+	$(".test-block").click(function() {
+
+		$("p").css( "opacity" , 1 );
+
+	});
+
+</script>
+
+  </body>
+</html>
